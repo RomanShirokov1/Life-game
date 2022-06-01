@@ -5,19 +5,19 @@ class Cell
 {
 private:
 	bool alive;
-	sf::RectangleShape shape;	//Параметры квадрата(цвет, размер и тд)
+	sf::RectangleShape shape;	//РџР°СЂР°РјРµС‚СЂС‹ РєРІР°РґСЂР°С‚Р°(С†РІРµС‚, СЂР°Р·РјРµСЂ Рё С‚Рґ)
 	int x, y;
 	int cellSize;
 
 public:
-	Cell(int i, int j, int w);	//Конструктор
-	~Cell();	//Деструктор
-	bool isAlive();		//Жива ли клетка
-	void draw(sf::RenderWindow& window);	//Отрисовка клетки
-	void setPosition(sf::Vector2f pos);		//Позиция клетки
-	void ressurect();	//Воскрешение клетки
-	void kill();	//Убийство клетки
-	void update(sf::RenderWindow& window, sf::Clock& clockActivating, sf::Time& elapsedActivated);		//Обновление клеток
+	Cell(int i, int j, int w);	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+	~Cell();	//Р”РµСЃС‚СЂСѓРєС‚РѕСЂ
+	bool isAlive();		//Р–РёРІР° Р»Рё РєР»РµС‚РєР°
+	void draw(sf::RenderWindow& window);	//РћС‚СЂРёСЃРѕРІРєР° РєР»РµС‚РєРё
+	void setPosition(sf::Vector2f pos);		//РџРѕР·РёС†РёСЏ РєР»РµС‚РєРё
+	void ressurect();	//Р’РѕСЃРєСЂРµС€РµРЅРёРµ РєР»РµС‚РєРё
+	void kill();	//РЈР±РёР№СЃС‚РІРѕ РєР»РµС‚РєРё
+	void update(sf::RenderWindow& window, sf::Clock& clockActivating, sf::Time& elapsedActivated);		//РћР±РЅРѕРІР»РµРЅРёРµ РєР»РµС‚РѕРє
 	int getX();
 	int getY();
 };
