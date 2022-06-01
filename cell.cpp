@@ -3,11 +3,11 @@
 
 Cell::Cell(int i, int j, int w)
 {
-    this->alive = false;    //Âñå êëåòêè èçíà÷àëüíî ìåðòâû
-    this->shape.setFillColor(sf::Color(250, 128, 114));     //Çàïîëíÿåì êëåòêó âûáðàííûì öâåòîì
-    this->shape.setOutlineThickness(1);     //Òîëùèíà ãðàíèöû
-    this->shape.setOutlineColor(sf::Color(220, 20, 60, 0));     //Âûáèðàåì öâåò ãðàíèö êëåòêè
-    this->shape.setSize(sf::Vector2f(15.0, 15.0));      //Óñòàíàâëèâàåì ðàçìåð êëåòêè
+    this->alive = false;    //Ð’ÑÐµ ÐºÐ»ÐµÑ‚ÐºÐ¸ Ð¸Ð·Ð½Ð°Ñ‡Ð°Ð»ÑŒÐ½Ð¾ Ð¼ÐµÑ€Ñ‚Ð²Ñ‹
+    this->shape.setFillColor(sf::Color(250, 128, 114));     //Ð—Ð°Ð¿Ð¾Ð»Ð½ÑÐµÐ¼ ÐºÐ»ÐµÑ‚ÐºÑƒ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð½Ñ‹Ð¼ Ñ†Ð²ÐµÑ‚Ð¾Ð¼
+    this->shape.setOutlineThickness(1);     //Ð¢Ð¾Ð»Ñ‰Ð¸Ð½Ð° Ð³Ñ€Ð°Ð½Ð¸Ñ†Ñ‹
+    this->shape.setOutlineColor(sf::Color(220, 20, 60, 0));     //Ð’Ñ‹Ð±Ð¸Ñ€Ð°ÐµÐ¼ Ñ†Ð²ÐµÑ‚ Ð³Ñ€Ð°Ð½Ð¸Ñ† ÐºÐ»ÐµÑ‚ÐºÐ¸
+    this->shape.setSize(sf::Vector2f(15.0, 15.0));      //Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ñ€Ð°Ð·Ð¼ÐµÑ€ ÐºÐ»ÐµÑ‚ÐºÐ¸
     this->x = i;
     this->y = j;
     this->cellSize = w; 
@@ -15,7 +15,7 @@ Cell::Cell(int i, int j, int w)
 
 Cell::~Cell() {}
 
-bool Cell::isAlive()    //Ïðîâåðêà æèâà ëè êëåòêà
+bool Cell::isAlive()    //ÐŸÑ€Ð¾Ð²ÐµÑ€ÐºÐ° Ð¶Ð¸Ð²Ð° Ð»Ð¸ ÐºÐ»ÐµÑ‚ÐºÐ°
 {
     return this->alive;
 }
@@ -35,7 +35,7 @@ void Cell::draw(sf::RenderWindow& window)
     int xCoord = 1 + this->x * this->cellSize;
     int yCoord = 1 + this->y * this->cellSize;
     this->shape.setPosition(sf::Vector2f(xCoord, yCoord));      
-    window.draw(this->shape);       //Ðèñóåì êëåòêè
+    window.draw(this->shape);       //Ð Ð¸ÑÑƒÐµÐ¼ ÐºÐ»ÐµÑ‚ÐºÐ¸
 }
 
 void Cell::setPosition(sf::Vector2f pos) 
@@ -45,22 +45,22 @@ void Cell::setPosition(sf::Vector2f pos)
 
 void Cell::kill() 
 {
-    this->alive = false;    //Êëåòêà óìèðàåò
-    this->shape.setFillColor(sf::Color(250, 128, 114));     //Óñòàíàâëèâàåì öâåò äëÿ ìåðòâîé êëåòêè
+    this->alive = false;    //ÐšÐ»ÐµÑ‚ÐºÐ° ÑƒÐ¼Ð¸Ñ€Ð°ÐµÑ‚
+    this->shape.setFillColor(sf::Color(250, 128, 114));     //Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ñ†Ð²ÐµÑ‚ Ð´Ð»Ñ Ð¼ÐµÑ€Ñ‚Ð²Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸
 }
 
 void Cell::ressurect()
 {
-    this->alive = true;     //Êëåòêà îæèâàåò
-    this->shape.setFillColor(sf::Color::Black);     //Óñòàíàâëèâàåì öâåò äëÿ æèâîé êëåòêè
+    this->alive = true;     //ÐšÐ»ÐµÑ‚ÐºÐ° Ð¾Ð¶Ð¸Ð²Ð°ÐµÑ‚
+    this->shape.setFillColor(sf::Color::Black);     //Ð£ÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÐ¼ Ñ†Ð²ÐµÑ‚ Ð´Ð»Ñ Ð¶Ð¸Ð²Ð¾Ð¹ ÐºÐ»ÐµÑ‚ÐºÐ¸
 }
 
 void Cell::update(sf::RenderWindow& window, sf::Clock& clockActivating, sf::Time& elapsedActivated) 
 {
-    if (elapsedActivated.asSeconds() >= 0.2)   //Åñëè ñ çàïóñêà ïðîøëî îïðåäåëåííîå êîë-âî âðåìåíè
+    if (elapsedActivated.asSeconds() >= 0.2)   //Ð•ÑÐ»Ð¸ Ñ Ð·Ð°Ð¿ÑƒÑÐºÐ° Ð¿Ñ€Ð¾ÑˆÐ»Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»ÐµÐ½Ð½Ð¾Ðµ ÐºÐ¾Ð»-Ð²Ð¾ Ð²Ñ€ÐµÐ¼ÐµÐ½Ð¸
     {
-        clockActivating.restart();      //Îáíóëÿåì òàéìåð
-        if (this->alive)        //Ïðîâåðÿåì äîëæíà ëè óìåðåòü êëåòêà èëè âîçâîäèòüñÿ
+        clockActivating.restart();      //ÐžÐ±Ð½ÑƒÐ»ÑÐµÐ¼ Ñ‚Ð°Ð¹Ð¼ÐµÑ€
+        if (this->alive)        //ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÐµÐ¼ Ð´Ð¾Ð»Ð¶Ð½Ð° Ð»Ð¸ ÑƒÐ¼ÐµÑ€ÐµÑ‚ÑŒ ÐºÐ»ÐµÑ‚ÐºÐ° Ð¸Ð»Ð¸ Ð²Ð¾Ð·Ð²Ð¾Ð´Ð¸Ñ‚ÑŒÑÑ
         {
             this->alive = false;
             this->kill();
