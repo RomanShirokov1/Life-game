@@ -2,7 +2,7 @@
 #include <iostream>
 #include <sstream>
 
-void Game::copyGrid(std::vector<Cell>& v1, std::vector<Cell>& v2)  //Копирование вектора для смены поколения
+void Game::copyGrid(std::vector<Cell>& v1, std::vector<Cell>& v2)  //РљРѕРїРёСЂРѕРІР°РЅРёРµ РІРµРєС‚РѕСЂР° РґР»СЏ СЃРјРµРЅС‹ РїРѕРєРѕР»РµРЅРёСЏ
 {
     v2.clear();
     for (int i = 0; i < v1.size(); i++) 
@@ -13,33 +13,33 @@ void Game::copyGrid(std::vector<Cell>& v1, std::vector<Cell>& v2)  //Копирование
 
 Game::Game()
 {
-    window.create(sf::VideoMode(this->WINDOW_SIZE, this->WINDOW_SIZE + 30), "Game of life");     //Создаем окно в видео моде с нужным размером
+    window.create(sf::VideoMode(this->WINDOW_SIZE, this->WINDOW_SIZE + 30), "Game of life");     //РЎРѕР·РґР°РµРј РѕРєРЅРѕ РІ РІРёРґРµРѕ РјРѕРґРµ СЃ РЅСѓР¶РЅС‹Рј СЂР°Р·РјРµСЂРѕРј
     window.setFramerateLimit(FPS);
     for (int i = 0; i < this->GRID_SIZE; i++) 
     {
         for (int j = 0; j < this->GRID_SIZE; j++)
         {
-            Cell newCell(i, j, this->CELL_SIZE);    //Создаем все клетки на экране
-            this->grid.push_back(newCell);      //Все клетки кладем в вектор
+            Cell newCell(i, j, this->CELL_SIZE);    //РЎРѕР·РґР°РµРј РІСЃРµ РєР»РµС‚РєРё РЅР° СЌРєСЂР°РЅРµ
+            this->grid.push_back(newCell);      //Р’СЃРµ РєР»РµС‚РєРё РєР»Р°РґРµРј РІ РІРµРєС‚РѕСЂ
             this->gridCopy.push_back(newCell);
         }
     }
-    isRunning = false;      //Изначально программа остановлена
+    isRunning = false;      //РР·РЅР°С‡Р°Р»СЊРЅРѕ РїСЂРѕРіСЂР°РјРјР° РѕСЃС‚Р°РЅРѕРІР»РµРЅР°
 }
 
 Game::~Game() {}
 
-int Game::getLivingNeighbors(int x, int y)      //Проверяем кол-во живых соседей
+int Game::getLivingNeighbors(int x, int y)      //РџСЂРѕРІРµСЂСЏРµРј РєРѕР»-РІРѕ Р¶РёРІС‹С… СЃРѕСЃРµРґРµР№
 {
     int livingNeighbors = 0;
-    if (x < GRID_SIZE - 1 && grid[y * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;  //Сосед справа
-    if (x > 0 && grid[y * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;  //Сосед слева
-    if (y < GRID_SIZE - 1 && grid[(y + 1) * GRID_SIZE + x].isAlive()) livingNeighbors++;    //Сосед снизу
-    if (y > 0 && grid[(y - 1) * GRID_SIZE + x].isAlive()) livingNeighbors++;    //Сосед сверху
-    if (y < GRID_SIZE - 1 && x < GRID_SIZE - 1 && grid[(y + 1) * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;   //Сосед справа снизу
-    if (y < GRID_SIZE - 1 && x > 0 && grid[(y + 1) * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;   //Сосед слева снизу
-    if (y > 0 && x < GRID_SIZE - 1 && grid[(y - 1) * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;   //Сосед справа сверху
-    if (y > 0 && x > 0 && grid[(y - 1) * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;   //Сосед слева сверху
+    if (x < GRID_SIZE - 1 && grid[y * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;  //РЎРѕСЃРµРґ СЃРїСЂР°РІР°
+    if (x > 0 && grid[y * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;  //РЎРѕСЃРµРґ СЃР»РµРІР°
+    if (y < GRID_SIZE - 1 && grid[(y + 1) * GRID_SIZE + x].isAlive()) livingNeighbors++;    //РЎРѕСЃРµРґ СЃРЅРёР·Сѓ
+    if (y > 0 && grid[(y - 1) * GRID_SIZE + x].isAlive()) livingNeighbors++;    //РЎРѕСЃРµРґ СЃРІРµСЂС…Сѓ
+    if (y < GRID_SIZE - 1 && x < GRID_SIZE - 1 && grid[(y + 1) * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;   //РЎРѕСЃРµРґ СЃРїСЂР°РІР° СЃРЅРёР·Сѓ
+    if (y < GRID_SIZE - 1 && x > 0 && grid[(y + 1) * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;   //РЎРѕСЃРµРґ СЃР»РµРІР° СЃРЅРёР·Сѓ
+    if (y > 0 && x < GRID_SIZE - 1 && grid[(y - 1) * GRID_SIZE + x + 1].isAlive()) livingNeighbors++;   //РЎРѕСЃРµРґ СЃРїСЂР°РІР° СЃРІРµСЂС…Сѓ
+    if (y > 0 && x > 0 && grid[(y - 1) * GRID_SIZE + x - 1].isAlive()) livingNeighbors++;   //РЎРѕСЃРµРґ СЃР»РµРІР° СЃРІРµСЂС…Сѓ
 
     return livingNeighbors;
 }
@@ -64,48 +64,48 @@ void Game::run()
         this->elapsedActivated = this->clockActivating.getElapsedTime();
         elapsedStart = clockStart.getElapsedTime();
 
-        while (window.pollEvent(event))     //Проверка на определенные действия
+        while (window.pollEvent(event))     //РџСЂРѕРІРµСЂРєР° РЅР° РѕРїСЂРµРґРµР»РµРЅРЅС‹Рµ РґРµР№СЃС‚РІРёСЏ
         {
-            if (event.type == sf::Event::Closed)    //Проверка на закрытие окна
+            if (event.type == sf::Event::Closed)    //РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РєСЂС‹С‚РёРµ РѕРєРЅР°
             {
                 window.close();
             }
-            else if (event.mouseButton.button == sf::Mouse::Left && !isRunning)     //Проверка на нажатие ЛКМ
+            else if (event.mouseButton.button == sf::Mouse::Left && !isRunning)     //РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ Р›РљРњ
             {
                 if (event.mouseButton.y < WINDOW_SIZE && event.mouseButton.y > 1)
                 {
                     int yCell = event.mouseButton.x / CELL_SIZE;
                     int xCell = event.mouseButton.y / CELL_SIZE;
-                    grid[yCell * ROWS + xCell].update(this->window, this->clockActivating, this->elapsedActivated);     //Обновляет клетку, на которую нажали ЛКМ
+                    grid[yCell * ROWS + xCell].update(this->window, this->clockActivating, this->elapsedActivated);     //РћР±РЅРѕРІР»СЏРµС‚ РєР»РµС‚РєСѓ, РЅР° РєРѕС‚РѕСЂСѓСЋ РЅР°Р¶Р°Р»Рё Р›РљРњ
                 }
             }
-            else if (event.type == sf::Event::KeyPressed)   //Проверка на нажатие клавиши
+            else if (event.type == sf::Event::KeyPressed)   //РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё
             {
-                if (event.key.code == sf::Keyboard::Space)  //Проверка на нажатие Пробела
+                if (event.key.code == sf::Keyboard::Space)  //РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РџСЂРѕР±РµР»Р°
                 {
-                    if (isRunning)      //Ставит на паузу, если игра запущена, запускает игру, если игра на паузе
+                    if (isRunning)      //РЎС‚Р°РІРёС‚ РЅР° РїР°СѓР·Сѓ, РµСЃР»Рё РёРіСЂР° Р·Р°РїСѓС‰РµРЅР°, Р·Р°РїСѓСЃРєР°РµС‚ РёРіСЂСѓ, РµСЃР»Рё РёРіСЂР° РЅР° РїР°СѓР·Рµ
                     {
-                        std::cout << "Игра остановлена!\n";
+                        std::cout << "РРіСЂР° РѕСЃС‚Р°РЅРѕРІР»РµРЅР°!\n";
                         isRunning = !isRunning;
                         clockStart.restart();
                     }
                     else
                     {
-                        std::cout << "Игра запущена!\n";
+                        std::cout << "РРіСЂР° Р·Р°РїСѓС‰РµРЅР°!\n";
                         isRunning = !isRunning;
                         clockStart.restart();
                     }
                 }
-                if (event.key.code == sf::Keyboard::R && !isRunning)    //Проверка на нажатие клавиши R
+                if (event.key.code == sf::Keyboard::R && !isRunning)    //РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё R
                 {
-                    std::cout << "Вы очистили игровое поле!\n";
+                    std::cout << "Р’С‹ РѕС‡РёСЃС‚РёР»Рё РёРіСЂРѕРІРѕРµ РїРѕР»Рµ!\n";
                     Generation = 1;
-                    for (int i = 0; i < grid.size(); i++)   //С помощье цикла уничножаем все клетки
+                    for (int i = 0; i < grid.size(); i++)   //РЎ РїРѕРјРѕС‰СЊРµ С†РёРєР»Р° СѓРЅРёС‡РЅРѕР¶Р°РµРј РІСЃРµ РєР»РµС‚РєРё
                     {
                         grid[i].kill();     
                     }
                 }
-                if (event.key.code == sf::Keyboard::W && !isRunning)    //Проверка на нажатие клавиши W
+                if (event.key.code == sf::Keyboard::W && !isRunning)    //РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р¶Р°С‚РёРµ РєР»Р°РІРёС€Рё W
                 {
                     copyGrid(grid, gridCopy);
                     for (int i = 0; i < grid.size(); i++)
@@ -126,7 +126,7 @@ void Game::run()
                         }
                         
                     }
-                    copyGrid(gridCopy, grid);     // Меняем поколение
+                    copyGrid(gridCopy, grid);     // РњРµРЅСЏРµРј РїРѕРєРѕР»РµРЅРёРµ
                         Generation++;
                 }
             }
@@ -146,7 +146,7 @@ void Game::run()
             {
                 int nb = getLivingNeighbors(grid[i].getY(), grid[i].getX());
                 bool lives = gridCopy[i].isAlive();
-                if (elapsedStart.asSeconds() >= 0.1)    //Каждые 0.1 сек клетки погибают и возрождаются, зависит от кол-во соседей
+                if (elapsedStart.asSeconds() >= 0.1)    //РљР°Р¶РґС‹Рµ 0.1 СЃРµРє РєР»РµС‚РєРё РїРѕРіРёР±Р°СЋС‚ Рё РІРѕР·СЂРѕР¶РґР°СЋС‚СЃСЏ, Р·Р°РІРёСЃРёС‚ РѕС‚ РєРѕР»-РІРѕ СЃРѕСЃРµРґРµР№
                 {
                     if (nb < 2) {
                         gridCopy[i].kill();
@@ -160,7 +160,7 @@ void Game::run()
                     clockStart.restart();
                 }
             }
-            copyGrid(gridCopy, grid);     // Меняем поколение
+            copyGrid(gridCopy, grid);     // РњРµРЅСЏРµРј РїРѕРєРѕР»РµРЅРёРµ
             if (elapsedStart.asSeconds() >= 0.1)
             {
                 Generation++;
