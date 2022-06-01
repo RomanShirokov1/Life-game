@@ -6,12 +6,12 @@
 class Game
 {
 private:
-	const int WINDOW_SIZE = 850;		//Размер окна
-	const int CELL_SIZE = 17;		//Размер клетки
-	const int GRID_SIZE = WINDOW_SIZE / 17;		//Размер сетки на поле
-	const int ROWS = WINDOW_SIZE / CELL_SIZE;	//Ряды
-	const int FPS = 60;		//Лимит FPS
-	bool isRunning;		//Запущена ли программа
+	const int WINDOW_SIZE = 850;		//Р Р°Р·РјРµСЂ РѕРєРЅР°
+	const int CELL_SIZE = 17;		//Р Р°Р·РјРµСЂ РєР»РµС‚РєРё
+	const int GRID_SIZE = WINDOW_SIZE / 17;		//Р Р°Р·РјРµСЂ СЃРµС‚РєРё РЅР° РїРѕР»Рµ
+	const int ROWS = WINDOW_SIZE / CELL_SIZE;	//Р СЏРґС‹
+	const int FPS = 60;		//Р›РёРјРёС‚ FPS
+	bool isRunning;		//Р—Р°РїСѓС‰РµРЅР° Р»Рё РїСЂРѕРіСЂР°РјРјР°
 
 	sf::RenderWindow window;
 	std::vector<Cell> grid, gridCopy;
@@ -24,7 +24,7 @@ private:
 	sf::Text text2;	
 
 	int Generation = 1;
-	int getLivingNeighbors(int x, int y);	//Получаем количество соседей клетки
+	int getLivingNeighbors(int x, int y);	//РџРѕР»СѓС‡Р°РµРј РєРѕР»РёС‡РµСЃС‚РІРѕ СЃРѕСЃРµРґРµР№ РєР»РµС‚РєРё
 
 public:
 	void copyGrid(std::vector<Cell>&, std::vector<Cell>&);
